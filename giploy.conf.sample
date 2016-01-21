@@ -1,0 +1,3 @@
+REPOSITORY=/home/johndoe/my-project
+REMOTES="production"
+LOG_FILENAME=giploy.log
