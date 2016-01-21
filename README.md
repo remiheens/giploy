@@ -19,8 +19,8 @@ $ ./giploy.sh -h
 
 ## Configuration
 |key|sample value|description|
-|-|-|-|
-|REPOSITORY|/home/<user>/preprod|The absolute path of your deployement git directory on your deployement server|
+|---|------------|-----------|
+|REPOSITORY|/home/\<user\>/preprod|The absolute path of your deployement git directory on your deployement server|
 |REMOTES|"production,production2,production3"|Remote name list|
 |LOG_FILENAME|debug.log|The log filename|
 |SCRIPT_ON_RELEASE_BRANCH|custom.sh|If you want to run a custom script when giploy is on the release branch|
