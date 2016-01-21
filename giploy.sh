@@ -1,18 +1,45 @@
 #!/bin/sh
 
 FULL_PATH="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
-if [[ ! -f $FULL_PATH"/deployme.conf" ]]; then
+if [[ ! -f $FULL_PATH"/giploy.conf" ]]; then
 	cat <<EOT
-Program did not find deployme.conf file
+Program did not find giploy.conf file
 EOT
 	exit 1
 fi
 
-. deployme.conf
+. giploy.conf
+
+if [[ $LOG_FILENAME -eq "" ]]; then
+	LOG_FILENAME=$FULL_PATH"/giploy-`date '+%Y-%m-%d_%H-%k'`.log"
+fi
+
+if [[ ! -d $REPOSITORY ]]; then
+	cat <<EOT
+Be sure to specify a correct path to your repository
+EOT
+	exit 1
+fi
 
 LOG_FILE=$LOG_FILENAME
 
 cd $REPOSITORY;
+
+if ! type "git" > /dev/null; then
+	cat <<EOT
+Git is not installed on your system
+EOT
+	exit 1
+fi
+
+git status > /dev/null 2>&1
+OUT=$? 
+if [[ $OUT -ne 0 ]]; then
+	cat <<EOT
+Your folder appears to be not a git repository
+EOT
+	exit 1
+fi
 
 log() {
 	echo "["`date`"] "$*
