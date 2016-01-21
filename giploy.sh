@@ -11,7 +11,7 @@ fi
 . giploy.conf
 
 if [[ $LOG_FILENAME -eq "" ]]; then
-	LOG_FILENAME=$FULL_PATH"/giploy-`date '+%Y-%m-%d_%H-%k'`.log"
+	LOG_FILENAME=$FULL_PATH"/giploy-`date '+%Y-%m-%d_%H-%M'`.log"
 fi
 
 if [[ ! -d $REPOSITORY ]]; then
