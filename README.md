@@ -17,9 +17,16 @@ $ chmod +x giploy.sh
 $ ./giploy.sh -h
 ```
 
-## Add remote server (manually)
+## Add remote server 
 
-### on remote server
+### Automatically
+Juste download init-remote.sh next to giploy.sh and run
+```
+$ ./init-remote.sh -u vagrant -H 127.0.0.1 -p 2201 -r /home/vagrant/website production3
+```
+
+### Manually
+#### on remote server
 
 Create empty git repository
 ```
@@ -40,7 +47,7 @@ Make sure that your hook have correct rights
 $ chmod +x hooks/post-receive
 ```
 
-### on deployment/dev server
+#### on deployment/dev server
 
 In your repository path , you have to add a remote server to use this script.
 ```
