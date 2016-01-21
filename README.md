@@ -60,7 +60,7 @@ Do an initial push, that setup the master branch
 $ git push production +master:refs/heads/master
 ```
 
-So, you've ready to use this remote server and add it to giploy.conf
+So, you're ready to use this remote server and add it to giploy.conf
 
 Enjoy
 
