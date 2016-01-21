@@ -94,7 +94,11 @@ create_release_branch() {
 
 bump_version() {
 	cat README | sed -i.bak "s/v$CURRENT_VERSION/v$NEXT_VERSION/g" README
-	cat constants.php | sed -i.bak "s/define('ENVIRONMENT', 'development');/define('ENVIRONMENT', 'production');/g" constants.php
+
+	if [[ -f $FULL_PATH"/"$SCRIPT_ON_RELEASE_BRANCH ]]; then
+		. $FULL_PATH"/"$SCRIPT_ON_RELEASE_BRANCH
+	fi
+
 	git commit -a -m "Release v$NEXT_VERSION" >> $LOG_FILE 2>&1 >> /dev/null
 	OUT=$? 
 	return "$OUT"

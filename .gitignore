@@ -1,3 +1,4 @@
 *.log
 *.bak
+custom.sh
 giploy.conf

@@ -1,3 +1,4 @@
 REPOSITORY=/home/johndoe/my-project
 REMOTES="production,production2"
 LOG_FILENAME=giploy.log
+SCRIPT_ON_RELEASE_BRANCH=custom.sh

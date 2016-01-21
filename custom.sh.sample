@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "WAOW, this script rocks !"
+ls -la
