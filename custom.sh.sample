@@ -1,4 +1,6 @@
 #!/bin/sh
 
 echo "WAOW, this script rocks !"
-ls -la
+
+# Here, you can do whatever you want
+# this script is running in the REPOSITORY path
