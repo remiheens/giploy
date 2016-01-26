@@ -110,9 +110,9 @@ chmod +x hooks/post-receive && mkdir -p "$ROOT_DIRECTORY"
 
 cd $REPOSITORY;
 log "add remote server to your git project"
-git remote add production3 "ssh://"$REMOTE_USER"@"$REMOTE_HOSTNAME":"$REMOTE_PORT"/home/"$REMOTE_USER"/website.git" >> $LOG_FILE 2>&1 >> /dev/null
+git remote add $REMOTE_NAME "ssh://"$REMOTE_USER"@"$REMOTE_HOSTNAME":"$REMOTE_PORT"/home/"$REMOTE_USER"/website.git" >> $LOG_FILE 2>&1 >> /dev/null
 log "push master branch to init remote server"
-git push production3 +master:refs/heads/master >> $LOG_FILE 2>&1 >> /dev/null
+git push $REMOTE_NAME +master:refs/heads/master >> $LOG_FILE 2>&1 >> /dev/null
 
 cd $FULL_PATH;
 log "add remote server to your giploy.conf"
