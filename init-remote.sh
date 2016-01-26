@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
+set -e
+set -u
 
 FULL_PATH="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
-if [[ ! -f $FULL_PATH"/giploy.conf" ]]; then
+if [ ! -f $FULL_PATH"/giploy.conf" ]; then
 	cat <<EOT
 Program did not find giploy.conf file
 EOT
@@ -10,11 +13,11 @@ fi
 
 . giploy.conf
 
-if [[ $LOG_FILENAME -eq "" ]]; then
+if [ $LOG_FILENAME -eq "" ]; then
 	LOG_FILENAME=$FULL_PATH"/giploy-init-`date '+%Y-%m-%d_%H-%M'`.log"
 fi
 
-if [[ ! -d $REPOSITORY ]]; then
+if [ ! -d $REPOSITORY ]; then
 	cat <<EOT
 Be sure to specify a correct path to your repository
 EOT
@@ -34,7 +37,7 @@ fi
 
 git status > /dev/null 2>&1
 OUT=$? 
-if [[ $OUT -ne 0 ]]; then
+if [ $OUT -ne 0 ]; then
 	cat <<EOT
 Your folder appears to be not a git repository
 EOT
@@ -89,11 +92,11 @@ shift $((OPTIND-1))
 REMOTE_NAME=$1
 REMOTE_NAME="$(echo "${REMOTE_NAME}" | tr -d '[[:space:]]')"
 
-if [[ -z $REMOTE_NAME ]]; then
+if [ -z $REMOTE_NAME ]; then
 	usage
 fi
 
-if [[ $OPTIND -ne 9 ]]; then
+if [ $OPTIND -ne 9 ]; then
 	cat <<EOT
 please provide every arguments
 EOT
