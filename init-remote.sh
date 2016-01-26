@@ -1,7 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-set -e
-set -u
+#set -e
+#set -u
 
 FULL_PATH="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 if [ ! -f $FULL_PATH"/giploy.conf" ]; then
@@ -11,9 +11,9 @@ EOT
 	exit 1
 fi
 
-. giploy.conf
+. $FULL_PATH/giploy.conf
 
-if [ $LOG_FILENAME -eq "" ]; then
+if [ -z $LOG_FILENAME ]; then
 	LOG_FILENAME=$FULL_PATH"/giploy-init-`date '+%Y-%m-%d_%H-%M'`.log"
 fi
 
@@ -111,6 +111,14 @@ EOT
 chmod +x hooks/post-receive && mkdir -p "$ROOT_DIRECTORY"
 " >> $LOG_FILE 2>&1 >> /dev/null
 
+OUT=$? 
+if [ $OUT -ne 0 ]; then
+	cat <<EOT
+Remote connection failed
+$OUT
+EOT
+	exit 1
+fi
 cd $REPOSITORY;
 log "add remote server to your git project"
 git remote add $REMOTE_NAME "ssh://"$REMOTE_USER"@"$REMOTE_HOSTNAME":"$REMOTE_PORT"/home/"$REMOTE_USER"/website.git" >> $LOG_FILE 2>&1 >> /dev/null
